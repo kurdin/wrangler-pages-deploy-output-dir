@@ -1,0 +1,40 @@
+{
+  "name": "pastebar-license-server",
+  "version": "0.0.2",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev --proxy=5173 -- vite --port=5173 --strictPort",
+    "vite": "vite dev",
+    "build": "vite build",
+    "deploy": "npm run build && wrangler pages deploy pages/"
+  },
+  "license": "Private",
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/parser": "^7.24.4",
+    "@cloudflare/workers-types": "^4.20240403.0",
+    "@hono/vite-cloudflare-pages": "^0.2.4",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.2.25",
+    "@vitejs/plugin-react": "^4.2.1",
+    "prettier": "^3.2.5",
+    "prisma": "^5.12.1",
+    "vite": "^5.0.12",
+    "wrangler": "^3.52.0",
+    "zod-prisma-types": "^3.1.6"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.2.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
+    "@prisma/adapter-d1": "^5.12.1",
+    "@prisma/client": "^5.12.1",
+    "@stripe/react-stripe-js": "^2.7.0",
+    "@stripe/stripe-js": "^3.3.0",
+    "hono": "^4.2.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "stripe": "^15.3.0",
+    "zod": "^3.23.0"
+  }
+}

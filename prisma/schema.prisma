@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String   @unique
+  licenseKey    LicenseKey[]
+}
+
+model LicenseKey {
+  id          String   @id @default(nanoid(12))
+  maxDevices  Int
+  expires     DateTime 
+  issued      DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  language    String?
+  isActivated Boolean  @default(false)
+  isEnable    Boolean  @default(true)
+  features    LicenseFeature[]
+  devices     Device[]
+  userId      String
+  user        User    @relation(fields: [userId], references: [id])
+}
+
+model Device {
+  id          String   @id @default(nanoid(12))
+  deviceHwId  String   
+  deviceName  String
+  deviceType  String
+  deviceOS    String
+  licenseKeyId String
+  licenseKey  LicenseKey @relation(fields: [licenseKeyId], references: [id])
+
+  @@unique([deviceHwId, licenseKeyId])
+}
+
+model LicenseFeature {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  LicenseKey  LicenseKey @relation(fields: [licenseKeyId], references: [id])
+  licenseKeyId String
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+generator zod {
+  createRelationValuesTypes = true
+  output                    = "../src/generated/zod"
+  provider                  = "zod-prisma-types"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}

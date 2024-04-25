@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "types": [
+      "@cloudflare/workers-types"
+    ],
+  },
+  "include": ["src", "types", "functions"],
+  "exclude": ["node_modules", "src-tauri", "dist-ui", ".next"],
+}

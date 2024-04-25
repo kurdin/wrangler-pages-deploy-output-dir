@@ -1,0 +1,26 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "wrangler-pages-deploy-output-dir"
+compatibility_date = "2024-04-01"
+# pages_build_output_dir = "pages" 
+
+[vars]
+VAR1 = "111"
+ENVIRONMENT = "dev"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "db-test-db"
+database_id = "xxx"
+
+# Production Environment Configuration
+[env.production]
+name = "wrangler-pages-deploy-output-dir"
+
+[env.production.vars]
+VAR1 = "222"
+ENVIRONMENT = "production"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "db-test-db"
+database_id = "xxx"
